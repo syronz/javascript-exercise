@@ -1,9 +1,9 @@
 export class Route {
-  constructor(name, path, handler) {
-
+  constructor(name, path, handler, loader) {
     this.name = name
     this.path = path
     this.handler = handler
+    this.loader = loader
   }
 
   get name() {

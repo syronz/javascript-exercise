@@ -5,7 +5,7 @@ export default class About {
     this.loader = new Loader
   }
 
-  message = async () => {
+  getContent = async () => {
     const content = await this.loader.getData("about")
     return content
   }
