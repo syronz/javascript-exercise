@@ -33,12 +33,12 @@ export class Router {
     return this
   }
 
-  navigate(route) {
+  navigate(route, history = false) {
     route = route ? route : ''
-    this.match(route)
+    this.match(route, history)
   }
 
-  match(route) {
+  match(route, history) {
     for(var i = 0; i < this.routes.length; i++) {
       let paramNames = []
       let regexPath = this.routes[i].path.replace(/([:*])(\w+)/g, function (full, colon, name) {
@@ -61,16 +61,20 @@ export class Router {
         } else {
           this.routes[i].handler(params)
         }
-        this.location(route)
+        this.location(route, history)
       }
     }
   }
-  location(route) {
+  location(route, history) {
+    if (history) {
+      return
+    }
+    console.log(this, route)
     if (this.mode === 'history') {
       window.history.pushState(null, null, this.root + route)
     } else {
-      route = route.replace(/^\//,'').replace(/\/$/,'')
-      window.location.href = window.location.href.replace(/#(.*)$/, '') + '#' + route
+      // route = route.replace(/^\//,'').replace(/\/$/,'')
+      // window.location.href = window.location.href.replace(/#(.*)$/, '') + '#' + route
     }
   }
 }

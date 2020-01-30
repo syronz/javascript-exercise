@@ -6,7 +6,7 @@
 
 const lazy = async _ => {
   try {
-  const module = await import("./LazyContent2.js");
+  const module = await import("./LazyContent.js");
   console.log('const', module.msg);
   console.log('function', module.message());
 
