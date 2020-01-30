@@ -1,3 +1,16 @@
-<p>
-  about works fine!
-</p>
+<div class="frame about">
+  <p>
+    about works fine!
+  </p>
+  <div>
+    handlebars: {{ age }}
+  </div>
+  <button onAction="getUsers()" > get users </button>
+  <pre>
+      <ul class="pople_list">
+        {{#each users}}
+          <li>{{this.name}}</li>
+        {{/each}}
+      </ul>
+  </pre>
+</div>

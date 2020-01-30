@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf8">
     <title> Routing </title>
+    <script defer src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script type="module" src="http://localhost:3000/main.js"></script>
 
   </head>
@@ -18,11 +19,12 @@
       }
     </style>
     <button route="/">Root</button>
+    <button route="/login">login</button>
     <button route="/about">about</button>
     <button route="/contact">contact</button>
     <button route="404">404</button>
     <button route="/user/24/save">user</button>
-    <button route="/login">login</button>
+    <button func="btnLogin()"> hello </button>
 
     <div id="main"></div>
   </body>

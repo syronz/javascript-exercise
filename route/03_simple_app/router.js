@@ -33,11 +33,14 @@ export class Router {
       route.handler = _ => {
         import(route.loader).then(async (cl) => {
           const lazyClass = new cl.default
-          const data = await lazyClass.getContent()
-          main.innerHTML = `<b>${data}</b>`
+          // const data = await lazyClass.getContent()
+          // main.innerHTML = `<b>${data}</b>`
+
+          lazyClass.init(main)
         });
       }
     }
+
     this.routes.push(new Route(route.name, route.path, route.handler))
     return this
   }
