@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title> 01 handlebars tutorial </title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <h1> Start ... </h1>
+
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script>
+      // compile the template
+      var template = Handlebars.compile("Handlebars <b>{{doesWhat}}</b>");
+      // execute the compiled template and print the output to the console
+      console.log(template({ doesWhat: "rocks!" }));
+
+
+      const tmp2 = Handlebars.compile("dd {{ 'diako' }}");
+      console.log(tmp2());
+
+      const tmp3 = Handlebars.compile("{{ firstname }} & {{ lastname }}");
+      obj = {
+        firstname: 'ako',
+        lastname: 'amir',
+      }
+      console.log(tmp3(obj));
+
+
+      const peopleArr1 = {
+        people: [
+          'diako amir',
+          'ako amir',
+          'saman karim',
+        ]
+      }
+      const str = `<ul class="pople_list">
+        {{#each people}}
+          <li>{{this}}</li>
+        {{/each}}
+        </ul>`
+      const tmp4 = Handlebars.compile(str);
+      console.log(tmp4(peopleArr1))
+
+
+      const content = `<div class="entry">
+        {{#if author}}
+        <h1> {{name}} {{age}} </h1>
+        {{/if}}
+        </div>`
+      const obj5 = {
+        author: true,
+        name: 'dsh',
+        age: 33
+      }
+      const tmp5 = Handlebars.compile(content)
+      console.log(tmp5(obj5))
+      obj5.author = false
+      console.log(tmp5(obj5))
+
+    </script>
+
+
+
+
+    <!-- <script src='js/handlebars-v4.7.2.js'></script> -->
+    <!-- <script src='js/scripts.js'></script> -->
+  </body>
+</html>
