@@ -32,11 +32,14 @@ export class Router {
     if (route.loader !== undefined) {
       route.handler = _ => {
         import(route.loader).then(async (cl) => {
-          const lazyClass = new cl.default
+          const lazyClass = new cl.default(main)
           // const data = await lazyClass.getContent()
           // main.innerHTML = `<b>${data}</b>`
 
-          lazyClass.init(main)
+          // lazyClass.init()
+          if (typeof lazyClass.firstLoad === 'function') {
+            lazyClass.firstLoad()
+          }
         });
       }
     }
