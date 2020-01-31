@@ -7,10 +7,6 @@ export default class Login {
 
   getContent = async () => {
     let content = await this.loader.getData("login")
-
-    // var template = Handlebars.compile(content);
-    // content = template({ age: "33!" });
-
     return content
   }
 
@@ -37,10 +33,10 @@ export default class Login {
     // })
     //
 
-    const btns = Array.from(document.querySelectorAll('.login [onAction]'))
+    const btns = Array.from(document.querySelectorAll('.login [pOnclick]'))
     btns.forEach((btn) => btn.addEventListener('click', (e) => {
       e.preventDefault()
-      const f = `this.${e.target.getAttribute('onAction')}`
+      const f = `this.${e.target.getAttribute('pOnclick')}`
       eval(f)
     }, false ))
 
