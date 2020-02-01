@@ -6,7 +6,7 @@ const route = [
   { path: 'login', action: _ => console.log('this is login') },
   { path: 'about', action: _ => console.log('this is about'), children: [
     {path: 'sub', action: _ => console.log('this is sub') },
-    {path: 'location', action: _ => console.log('this is sub') },
+    {path: 'location', action: _ => console.log('this is location') },
     {path: 'history/:year', action: _ => console.log('this is history'), children: [
       {path: 'sort', action: _ => console.log('this is sort') },
       ],
@@ -34,7 +34,7 @@ activeRoutes.forEach((route) => route.addEventListener('click', (e) => {
   e.preventDefault()
   router.navigate(e.target.getAttribute('route'))
   // router.navigate(e.target.getAttribute('route'))
-  console.log(e.target.getAttribute('route'))
+  // console.log(e.target.getAttribute('route'))
 }, false))
 
 

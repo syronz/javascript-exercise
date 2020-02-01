@@ -10,6 +10,8 @@ export class Router {
     this.arr = arr
     this.routes = []
     this.parse('',this.arr,[], 0)
+    this.param = new Map()
+    this.query = new Map()
   }
 
   add(route) {
@@ -32,7 +34,50 @@ export class Router {
 
 
   navigate(url) {
-    console.log('navigate: go to ', url)
+    this.param = new Map()
+    this.query = new Map()
+
+    const urlArr = url.split('?')
+    url = urlArr[0]
+    const queryStr = urlArr[1]
+
+
+    this.routes.map( route => {
+      const params = []
+      let preparedReg = route.path.replace(/:(\w+)/g, (_, paramName) => {
+        params.push(paramName)
+        return '(\\w+)'
+      })
+
+      preparedReg += '$'
+
+      const regPattern = new RegExp(preparedReg)
+      let mArr = url.match(regPattern)
+      if (mArr !== null) {
+        for ( let i = 0, k = 1; i < params.length; i++, k++) {
+          this.param.set(params[i], mArr[k])
+        }
+
+        if ( queryStr !== undefined ) {
+          queryStr.split('&').map(x => {
+            const parts = x.split('=')
+            this.query.set(parts[0], parts[1])
+          })
+        }
+
+        route.handlers.map( x => {
+          x()
+        })
+      }
+    })
+
+    console.log('----------___________--', this.param, this.query)
+
+
+    // console.log('******', this.routes[0].handlers)
+    // this.routes[3].handlers.map( x => {
+    //   x()
+    // })
 
   }
 
